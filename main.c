@@ -4,40 +4,40 @@
 #include <string.h>
 #include <conio.h>
 
-void textcolor(int color_number); //±Û¾¾ »ö±ò º¯°æ 
-void gotoxy(int x, int y); // ÁÂÇ¥¸¦ ¸¸µé±â À§ÇØ 
-void menu(); //¸Ş´º ÇÔ¼ö 
-void print(); //°ÔÀÓ ¼³¸í ÇÔ¼ö 
-void auth(); //°ÔÀÓ ½ÃÀÛ Àü »ç¿ëÀÚ ¼³Á¤ 
-void boarder(); //°ÔÀÓÆÇ ÇÔ¼ö 
-void Life(); //life¿¡ µû¸¥ ¹ì »ı¼º ÇÔ¼ö  
-void food(); //À½½Ä »ı¼º ÇÔ¼ö 
-void move(); //¹ì ÀÌµ¿ ÇÔ¼ö 
-void up(); //¹ìÀÌ À§·Î ÀÌµ¿ÇÏ´Â ÇÔ¼ö 
-void left(); //¹ìÀÌ ¿ŞÂÊÀ¸·Î ÀÌµ¿ÇÏ´Â ÇÔ¼ö 
-void right(); //¹ìÀÌ ¿À¸¥ÂÊÀ¸·Î ÀÌµ¿ÇÏ´Â ÇÔ¼ö 
-void down(); //¹ìÀÌ ¾Æ·¡·Î ÀÌµ¿ÇÏ´Â ÇÔ¼ö 
-void collision(); //¹ìÀÇ Ãæµ¹ ¿©ºÎ È®ÀÎ ÇÔ¼ö 
-void game(); //°ÔÀÓ ½ÃÀÛ ÇÔ¼ö   
-void Score(); //Á¡¼ö Áõ°¡ ÇÔ¼ö  
-void exitgame(); // °ÔÀÓ ³ª°¡±â ÇÔ¼ö
-void record(); // Rank Ãâ·Â ÇÔ¼ö 
+void textcolor(int color_number); //ê¸€ì”¨ ìƒ‰ê¹” ë³€ê²½ 
+void gotoxy(int x, int y); // ì¢Œí‘œë¥¼ ë§Œë“¤ê¸° ìœ„í•´ 
+void menu(); //ë©”ë‰´ í•¨ìˆ˜ 
+void print(); //ê²Œì„ ì„¤ëª… í•¨ìˆ˜ 
+void auth(); //ê²Œì„ ì‹œì‘ ì „ ì‚¬ìš©ì ì„¤ì • 
+void boarder(); //ê²Œì„íŒ í•¨ìˆ˜ 
+void Life(); //lifeì— ë”°ë¥¸ ë±€ ìƒì„± í•¨ìˆ˜  
+void food(); //ìŒì‹ ìƒì„± í•¨ìˆ˜ 
+void move(); //ë±€ ì´ë™ í•¨ìˆ˜ 
+void up(); //ë±€ì´ ìœ„ë¡œ ì´ë™í•˜ëŠ” í•¨ìˆ˜ 
+void left(); //ë±€ì´ ì™¼ìª½ìœ¼ë¡œ ì´ë™í•˜ëŠ” í•¨ìˆ˜ 
+void right(); //ë±€ì´ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ì´ë™í•˜ëŠ” í•¨ìˆ˜ 
+void down(); //ë±€ì´ ì•„ë˜ë¡œ ì´ë™í•˜ëŠ” í•¨ìˆ˜ 
+void collision(); //ë±€ì˜ ì¶©ëŒ ì—¬ë¶€ í™•ì¸ í•¨ìˆ˜ 
+void game(); //ê²Œì„ ì‹œì‘ í•¨ìˆ˜   
+void Score(); //ì ìˆ˜ ì¦ê°€ í•¨ìˆ˜  
+void exitgame(); // ê²Œì„ ë‚˜ê°€ê¸° í•¨ìˆ˜
+void record(); // Rank ì¶œë ¥ í•¨ìˆ˜ 
 void print_ascii_art();
 
 #define MAX_USER 10
 
-//Àü¿ªº¯¼ö  
-int i; //»ç¿ëÀÚ È®ÀÎ ¿ëµµ  
-int count =0; //»õ·Î¿î »ç¿ëÀÚ ¹øÈ£ ºÙÀÌ±â  
+//ì „ì—­ë³€ìˆ˜  
+int i; //ì‚¬ìš©ì í™•ì¸ ìš©ë„  
+int count =0; //ìƒˆë¡œìš´ ì‚¬ìš©ì ë²ˆí˜¸ ë¶™ì´ê¸°  
 int a, b; 
-int bestscore; //°ÔÀÓ ÃÖ°í ±â·Ï        
-int firstx[100]; //¹ì »ı¼º º¯¼ö  
-int firsty[100]; //¹ì »ı¼º º¯¼ö  
-int key; // Å°º¸µå ÀÔ·Â¹Ş´Â º¯¼ö  
-int score; //Á¡¼ö  
-int life; //±âÈ¸  
-int speed; //¹ìÀÌ ÀÌµ¿ÇÏ´Â ¼Óµµ  
-int body;  //¹ìÀÇ ¸Ó¸®+¸öÅë °³¼ö  
+int bestscore; //ê²Œì„ ìµœê³  ê¸°ë¡        
+int firstx[100]; //ë±€ ìƒì„± ë³€ìˆ˜  
+int firsty[100]; //ë±€ ìƒì„± ë³€ìˆ˜  
+int key; // í‚¤ë³´ë“œ ì…ë ¥ë°›ëŠ” ë³€ìˆ˜  
+int score; //ì ìˆ˜  
+int life; //ê¸°íšŒ  
+int speed; //ë±€ì´ ì´ë™í•˜ëŠ” ì†ë„  
+int body;  //ë±€ì˜ ë¨¸ë¦¬+ëª¸í†µ ê°œìˆ˜  
 
 struct ranker
 {
@@ -47,10 +47,10 @@ struct ranker
 
 struct ranker r[MAX_USER];
 
-int main(void) { //¸ŞÀÎ ÇÔ¼ö  
+int main(void) { //ë©”ì¸ í•¨ìˆ˜  
 	
 	system("tiTle Snake Game");
-	system("mode con cols=160 lines=40"); //ÄÜ¼ÖÃ¢ Å©±â °íÁ¤  
+	system("mode con cols=160 lines=40"); //ì½˜ì†”ì°½ í¬ê¸° ê³ ì •  
 	
 	menu();
 	
@@ -58,39 +58,39 @@ int main(void) { //¸ŞÀÎ ÇÔ¼ö
 	
 }
 
-void textcolor(int color_number) { //±Û¾¾ »ö±ò º¯°æ  
+void textcolor(int color_number) { //ê¸€ì”¨ ìƒ‰ê¹” ë³€ê²½  
 	
  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),color_number);
 
 }
 
-void gotoxy(int x, int y) { //ÁÂÇ¥ ¼³Á¤  
+void gotoxy(int x, int y) { //ì¢Œí‘œ ì„¤ì •  
 	
 	COORD pos={x,y};
 
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos); 
 }
 
-void menu() { //¸Ş´ºÇÔ¼ö  
+void menu() { //ë©”ë‰´í•¨ìˆ˜  
 	
 	textcolor(10); 
 	printf("\nSnake Game\n");
 	textcolor(14);
-	printf("\n°ÔÀÓ Á¦ÀÛÀÚ\n2ºĞ¹İ 2ÁÖÂ÷ 1ÆÀ: ±èÇı±Ù, È²¼±È«\n");
+	printf("\nê²Œì„ ì œì‘ì\n2ë¶„ë°˜ 2ì£¼ì°¨ 1íŒ€: ê¹€í˜œê·¼, í™©ì„ í™\n");
 	
 	textcolor(7);
 	printf("--------------------------------------------------\n");
 
 	
 	textcolor(11);
-	printf("\n1. °ÔÀÓ ¼³¸í\n\n");
-	printf("2. °ÔÀÓ ½ÃÀÛ\n\n");
-	printf("3. °ÔÀÓ ±â·Ï\n\n");
-	printf("4. °ÔÀÓ Á¾·á\n");
+	printf("\n1. ê²Œì„ ì„¤ëª…\n\n");
+	printf("2. ê²Œì„ ì‹œì‘\n\n");
+	printf("3. ê²Œì„ ê¸°ë¡\n\n");
+	printf("4. ê²Œì„ ì¢…ë£Œ\n");
 	int num;    
 	
 	textcolor(7);
-	printf("\nµé¾î°¡°íÀÚ ÇÏ´Â ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.\n");
+	printf("\në“¤ì–´ê°€ê³ ì í•˜ëŠ” ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.\n");
 	scanf("%d", &num);
 	switch (num) {
 		
@@ -116,23 +116,23 @@ void menu() { //¸Ş´ºÇÔ¼ö
 		    break;
 				
 		default:
-			printf("\nÀß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.\n");
+			printf("\nì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.\n");
 			Sleep(1000);
 			system("cls");
 			menu(); 
 			break;
 	}
 	
-	printf("\nÀÌ¿ëÇØÁÖ¼Å¼­ °¨»çÇÕ´Ï´Ù.");
+	printf("\nì´ìš©í•´ì£¼ì…”ì„œ ê°ì‚¬í•©ë‹ˆë‹¤.");
 	Sleep(10000);
 	system("cls");
 	
 }
 
-void print() { //°ÔÀÓ ¼³¸í ÇÔ¼ö  
+void print() { //ê²Œì„ ì„¤ëª… í•¨ìˆ˜  
 	
 	textcolor(11);
-	printf("\n°ÔÀÓ ¼³¸í\n");
+	printf("\nê²Œì„ ì„¤ëª…\n");
 	
 	textcolor(7);
 	int k=0;
@@ -140,14 +140,14 @@ void print() { //°ÔÀÓ ¼³¸í ÇÔ¼ö
 		printf("-");
 	
 	
-	printf("\n1. Å°º¸µå ¹æÇâÅ°¸¦ ÀÌ¿ëÇØ ¹ìÀ» ¿òÁ÷ÀÌ°Ô ÇÏ¿© È­¸é¿¡ ¶ç¾îÁø ¡ÚÀ» ¸Ô´Â °ÔÀÓÀÔ´Ï´Ù.\n\n");
-	printf("2. ¹ìÀÌ ¡ÚÀ» ÇÏ³ª ¸ÔÀ» ¶§¸¶´Ù Á¡¼ö°¡ 1¾¿ ¿Ã¶ó°¡¸ç ¹ìÀÇ ¸öÅëµµ ±æ¾îÁı´Ï´Ù.\n\n"); 
-	printf("3. escÅ°¸¦ ´©¸¦ °æ¿ì °ÔÀÓÀÌ ÀÏ½ÃÁßÁöµÇ¸ç ¹æÇâÅ°¸¦ ´©¸£¸é ´Ù½Ã ÁøÇàµË´Ï´Ù.\n\n");
-	printf("4. ±âÈ¸´Â ÃÑ µÎ ¹øÀÔ´Ï´Ù.\n\n");
-	printf("5. ¹ìÀÌ ¹æÇâÀüÈ¯ ÇÏ´Ù°¡ º®ÀÌ³ª ÀÚ±â ¸öÅë¿¡ ºÎµúÇô µÎ ¹øÀÇ ±âÈ¸¸¦ ¸ğµÎ ³¡³½ °æ¿ì, °ÔÀÓÀº ³¡³ª°Ô µË´Ï´Ù.\n\n");
+	printf("\n1. í‚¤ë³´ë“œ ë°©í–¥í‚¤ë¥¼ ì´ìš©í•´ ë±€ì„ ì›€ì§ì´ê²Œ í•˜ì—¬ í™”ë©´ì— ë„ì–´ì§„ â˜…ì„ ë¨¹ëŠ” ê²Œì„ì…ë‹ˆë‹¤.\n\n");
+	printf("2. ë±€ì´ â˜…ì„ í•˜ë‚˜ ë¨¹ì„ ë•Œë§ˆë‹¤ ì ìˆ˜ê°€ 1ì”© ì˜¬ë¼ê°€ë©° ë±€ì˜ ëª¸í†µë„ ê¸¸ì–´ì§‘ë‹ˆë‹¤.\n\n"); 
+	printf("3. escí‚¤ë¥¼ ëˆ„ë¥¼ ê²½ìš° ê²Œì„ì´ ì¼ì‹œì¤‘ì§€ë˜ë©° ë°©í–¥í‚¤ë¥¼ ëˆ„ë¥´ë©´ ë‹¤ì‹œ ì§„í–‰ë©ë‹ˆë‹¤.\n\n");
+	printf("4. ê¸°íšŒëŠ” ì´ ë‘ ë²ˆì…ë‹ˆë‹¤.\n\n");
+	printf("5. ë±€ì´ ë°©í–¥ì „í™˜ í•˜ë‹¤ê°€ ë²½ì´ë‚˜ ìê¸° ëª¸í†µì— ë¶€ë”ªí˜€ ë‘ ë²ˆì˜ ê¸°íšŒë¥¼ ëª¨ë‘ ëë‚¸ ê²½ìš°, ê²Œì„ì€ ëë‚˜ê²Œ ë©ë‹ˆë‹¤.\n\n");
 	
 	int num;
-	printf("\n¸Ş´º·Î µ¹¾Æ°¡½Ã·Á¸é 1, ¹Ù·Î °ÔÀÓÀ» ½ÃÀÛÇÏ½Ã·Á¸é 2¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.\n");
+	printf("\në©”ë‰´ë¡œ ëŒì•„ê°€ì‹œë ¤ë©´ 1, ë°”ë¡œ ê²Œì„ì„ ì‹œì‘í•˜ì‹œë ¤ë©´ 2ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.\n");
 	scanf("%d", &num);
 	
 	switch (num) {
@@ -162,7 +162,7 @@ void print() { //°ÔÀÓ ¼³¸í ÇÔ¼ö
 			break;
 		
 		default:
-			printf("\nÀß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù. ¸Ş´º·Î µ¹¾Æ°©´Ï´Ù.\n");
+			printf("\nì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤. ë©”ë‰´ë¡œ ëŒì•„ê°‘ë‹ˆë‹¤.\n");
 			
 			Sleep(1000);
 			system("cls");
@@ -171,16 +171,16 @@ void print() { //°ÔÀÓ ¼³¸í ÇÔ¼ö
 	}
 } 
 
-void auth() { //°ÔÀÓ ½ÃÀÛ Àü »ç¿ëÀÚ ¼³Á¤  
+void auth() { //ê²Œì„ ì‹œì‘ ì „ ì‚¬ìš©ì ì„¤ì •  
 
 	char checkname[20];
 	i=0; 
 	
-	printf("\n»ç¿ëÀÚ ÀÌ¸§À» 'È«±æµ¿'Ã³·³ Àû¾îÁÖ¼¼¿ä.\n");
+	printf("\nì‚¬ìš©ì ì´ë¦„ì„ 'í™ê¸¸ë™'ì²˜ëŸ¼ ì ì–´ì£¼ì„¸ìš”.\n");
 	scanf("%s", checkname);
-	fflush(stdin); //ÀÔ·Â ¹öÆÛ Áö¿ò  
+	fflush(stdin); //ì…ë ¥ ë²„í¼ ì§€ì›€  
 	
-	while ( !(strcmp(checkname, r[i].name) == 0) ) { //Á¸ÀçÇÏ´Â ÀÌ¸§ È®ÀÎ  
+	while ( !(strcmp(checkname, r[i].name) == 0) ) { //ì¡´ì¬í•˜ëŠ” ì´ë¦„ í™•ì¸  
 		
 		if ( i == count) {
 			
@@ -198,55 +198,55 @@ void auth() { //°ÔÀÓ ½ÃÀÛ Àü »ç¿ëÀÚ ¼³Á¤
 
 }
 
-void boarder() { //°ÔÀÓÆÇ ÇÔ¼ö  
+void boarder() { //ê²Œì„íŒ í•¨ìˆ˜  
 	
 	int j, k;
 	
 	textcolor(7);
 	for (j = 5; j < 65; j+=2) {
 		gotoxy(j, 5);
-		printf("¡à");
+		printf("â–¡");
 	}
 	
 	for (k = 6; k < 33; k++) {
 		gotoxy(5, k);
-		printf("¡à");
+		printf("â–¡");
 	}
 	
 	for (k = 6; k < 33; k++) {
 		gotoxy(63, k);
-		printf("¡à");
+		printf("â–¡");
 	}
 	
 	for (j = 5; j < 65; j+=2) {
 		gotoxy(j, 33);
-		printf("¡à");
+		printf("â–¡");
 	}
 	
 }
 
-void food() { //À½½Ä »ı¼º ÇÔ¼ö  
+void food() { //ìŒì‹ ìƒì„± í•¨ìˆ˜  
 	    	
 	textcolor(6);
 	srand((unsigned)time(NULL));
  	    
-    a= 7 + (rand() % 28)*2; // °ÔÀÓÃ¢ ¾È ¹üÀ§¿¡¼­ ·£´ıÀ¸·Î À½½ÄÀÌ »ı¼ºµÇµµ·Ï  
+    a= 7 + (rand() % 28)*2; // ê²Œì„ì°½ ì•ˆ ë²”ìœ„ì—ì„œ ëœë¤ìœ¼ë¡œ ìŒì‹ì´ ìƒì„±ë˜ë„ë¡  
 	b= 6 + rand() % 27;
 	
 	int num;
     for ( num =0; num <= body; num++) {
 		
-		if ( (a==firstx[num]) && (b==firsty[num]) ) { //À½½ÄÀÌ ¹ì°ú °ãÃÄ¼­ »ı¼ºµÇÁö ¾Ê±â À§ÇØ  
+		if ( (a==firstx[num]) && (b==firsty[num]) ) { //ìŒì‹ì´ ë±€ê³¼ ê²¹ì³ì„œ ìƒì„±ë˜ì§€ ì•Šê¸° ìœ„í•´  
 			a= 7 + (rand() % 28)*2;  
 	        b= 6 + rand() % 27;
 	        num= 0; 
 		}
 	}
 	gotoxy(a, b);
-	printf("¡Ú");
+	printf("â˜…");
 }
 
-void game() { //°ÔÀÓ ½ÃÀÛ ÇÔ¼ö  
+void game() { //ê²Œì„ ì‹œì‘ í•¨ìˆ˜  
 	
 	Life(); 
 	
@@ -261,18 +261,18 @@ void game() { //°ÔÀÓ ½ÃÀÛ ÇÔ¼ö
 	
 	textcolor(10);
     gotoxy(5, 3);
-	printf("Á¡¼ö: %d", score);
+	printf("ì ìˆ˜: %d", score);
 	gotoxy(58, 3);
 	printf("Life: %d", life); 
 
 	textcolor(11);
 	gotoxy(70, 5);
-	printf("%s ´Ô", r[i].name );
+	printf("%s ë‹˜", r[i].name );
 	gotoxy(70, 8);
-	printf("°³ÀÎ ÃÖ°í ±â·Ï: %d", r[i].score);
+	printf("ê°œì¸ ìµœê³  ê¸°ë¡: %d", r[i].score);
 	gotoxy(70, 11);
 	textcolor(14);
-	printf("°ÔÀÓ ÃÖ°í ±â·Ï: %d", bestscore);
+	printf("ê²Œì„ ìµœê³  ê¸°ë¡: %d", bestscore);
 	textcolor(7);
 	
 	boarder();
@@ -287,7 +287,7 @@ void Life() {
 	firstx[0]= 51;
     firsty[0]= 15;
 	
-	if (life == 1) { //life°¡ 1ÀÌ¸é  
+	if (life == 1) { //lifeê°€ 1ì´ë©´  
         firstx[1]= 49;
         firsty[1]= 15;
         firstx[2]= 47;
@@ -299,18 +299,18 @@ void Life() {
 	    
 	    textcolor(11);
 	    gotoxy(firstx[0], firsty[0]);
-		printf("¡Ü");
+		printf("â—");
 			
 		gotoxy(firstx[1], firsty[1]);
-		printf("¤·");
+		printf("ã…‡");
 			
 		gotoxy(firstx[2], firsty[2]);
-		printf("¤·");
+		printf("ã…‡");
 		textcolor(7);
 	}
-	else { //life°¡ 0ÀÌ¸é  
+	else { //lifeê°€ 0ì´ë©´  
 		
-		if ( body > 20 ) { // body°¡ 20 ÃÊ°úÀÏ ¶§  
+		if ( body > 20 ) { // bodyê°€ 20 ì´ˆê³¼ì¼ ë•Œ  
 		
 			for (checkbody =0; checkbody <= body; checkbody++) {
 				gotoxy(firstx[checkbody], firsty[checkbody]);
@@ -319,7 +319,7 @@ void Life() {
 			
 			textcolor(11);
 			gotoxy(firstx[0], firsty[0]);
-			printf("¡Ü");
+			printf("â—");
 			
 			body= 20;
 			 
@@ -328,14 +328,14 @@ void Life() {
 				firstx[checkbody]= firstx[checkbody-1] -2;
 				firsty[checkbody]= firsty[checkbody-1];
 				gotoxy(firstx[checkbody], firsty[checkbody]);
-				printf("¤·");
+				printf("ã…‡");
 			}
 			textcolor(7);
 	
 			
 		}
 		
-		else { //body°¡ 20 ÀÌÇÏÀÏ ¶§  
+		else { //bodyê°€ 20 ì´í•˜ì¼ ë•Œ  
 		
 			for (checkbody =0; checkbody <= body; checkbody++) {
 				gotoxy(firstx[checkbody], firsty[checkbody]);
@@ -344,7 +344,7 @@ void Life() {
 			
 			textcolor(11);
 			gotoxy(firstx[0], firsty[0]);
-			printf("¡Ü");
+			printf("â—");
 			
 			
 			for( checkbody = 1; checkbody <=body ; checkbody++) {
@@ -352,7 +352,7 @@ void Life() {
 				firstx[checkbody]= firstx[checkbody-1] -2;
 				firsty[checkbody]= firsty[checkbody-1];
 				gotoxy(firstx[checkbody], firsty[checkbody]);
-				printf("¤·");
+				printf("ã…‡");
 			}
 			textcolor(7);
 		}
@@ -360,35 +360,35 @@ void Life() {
 	}
 }
 
-void move() { //¹ì ÀÌµ¿ ÇÔ¼ö 
+void move() { //ë±€ ì´ë™ í•¨ìˆ˜ 
 	
-	while (1) { //¹«ÇÑ·çÇÁ  
+	while (1) { //ë¬´í•œë£¨í”„  
 		
 		if (kbhit()) {
 			
 			loop:
 							
-			    key = getch(); //Å°º¸µå ÀÔ·ÂÀ» ¹ŞÀ½  
+			    key = getch(); //í‚¤ë³´ë“œ ì…ë ¥ì„ ë°›ìŒ  
 		
 		        switch (key) {
 		
-		            case 72: // ¹æÇâÅ° ¡è¸¦ ÀÔ·Â ¹ŞÀ½  
-		        	    while (1) { //¹«ÇÑ·çÇÁ  
+		            case 72: // ë°©í–¥í‚¤ â†‘ë¥¼ ì…ë ¥ ë°›ìŒ  
+		        	    while (1) { //ë¬´í•œë£¨í”„  
 		        	    
-		        	        if (kbhit())  //Å°º¸µå ÀÔ·Â È®ÀÎ  
-		        		        goto loop; //Å°º¸µå ÀÔ·ÂÀ» ¹ŞÀ¸¸é ´Ù½Ã loopÀ¸·Î µ¹¾Æ°¨  
+		        	        if (kbhit())  //í‚¤ë³´ë“œ ì…ë ¥ í™•ì¸  
+		        		        goto loop; //í‚¤ë³´ë“œ ì…ë ¥ì„ ë°›ìœ¼ë©´ ë‹¤ì‹œ loopìœ¼ë¡œ ëŒì•„ê°  
 							
 		        		
-		        		    up(); //ÀÌµ¿ ÇÔ¼ö  
+		        		    up(); //ì´ë™ í•¨ìˆ˜  
 		        		    
-		        		    collision(); //Ãæµ¹ ¿©ºÎ È®ÀÎ  
+		        		    collision(); //ì¶©ëŒ ì—¬ë¶€ í™•ì¸  
 							
-		        		    Score(); //Á¡¼ö È®ÀÎ  
+		        		    Score(); //ì ìˆ˜ í™•ì¸  
 					    }
 					    break;    
 			        
 			
-		            case 75: //¹æÇâÅ° ¡ç¸¦ ÀÔ·Â ¹ŞÀ½  
+		            case 75: //ë°©í–¥í‚¤ â†ë¥¼ ì…ë ¥ ë°›ìŒ  
 			            while (1) {
 			            	
 			            	if (kbhit()) 
@@ -402,7 +402,7 @@ void move() { //¹ì ÀÌµ¿ ÇÔ¼ö
 		        		}
 			            break;
 			
-		            case 77: //¹æÇâÅ° ¡æ¸¦ ÀÔ·Â ¹ŞÀ½  
+		            case 77: //ë°©í–¥í‚¤ â†’ë¥¼ ì…ë ¥ ë°›ìŒ  
 			            while (1) {
 			            	
 			            	if (kbhit()) 
@@ -416,7 +416,7 @@ void move() { //¹ì ÀÌµ¿ ÇÔ¼ö
 		        		}
 			            break;
 			
-		            case 80: //¹æÇâÅ° ¡é¸¦ ÀÔ·Â ¹ŞÀ½  
+		            case 80: //ë°©í–¥í‚¤ â†“ë¥¼ ì…ë ¥ ë°›ìŒ  
 			            while (1) {
 			            	
 			            	if (kbhit()) 
@@ -430,7 +430,7 @@ void move() { //¹ì ÀÌµ¿ ÇÔ¼ö
 		        		}
 			            break;
 			            
-			        case 27: // esc ÀÔ·Â½Ã ´ÙÀ½ ÀÔ·Â±îÁö ÀÏ½ÃÁ¤Áö 
+			        case 27: // esc ì…ë ¥ì‹œ ë‹¤ìŒ ì…ë ¥ê¹Œì§€ ì¼ì‹œì •ì§€ 
 						break; 
 			        
 			        default:
@@ -444,7 +444,7 @@ void move() { //¹ì ÀÌµ¿ ÇÔ¼ö
 		
 }
 
-void up() { //¹ìÀÌ À§·Î ÀÌµ¿ÇÏ´Â ÇÔ¼ö  
+void up() { //ë±€ì´ ìœ„ë¡œ ì´ë™í•˜ëŠ” í•¨ìˆ˜  
 		
 	textcolor(11);
 		
@@ -452,32 +452,32 @@ void up() { //¹ìÀÌ À§·Î ÀÌµ¿ÇÏ´Â ÇÔ¼ö
 	
 	int checkbody;
 	
-	for( checkbody= body; checkbody >=0; checkbody--) { //¹ìÀÌ Áö³ª°£ ÀÚ¸®¸¦ Áö¿ò  
+	for( checkbody= body; checkbody >=0; checkbody--) { //ë±€ì´ ì§€ë‚˜ê°„ ìë¦¬ë¥¼ ì§€ì›€  
 		
 		gotoxy(firstx[checkbody], firsty[checkbody]);
 		printf("  ");
 	}
 	
-	for (checkbody= body; checkbody >=1; checkbody--) { //¹ìÀÇ ¸öÅëÀ» ÀÌµ¿½ÃÅ´  
+	for (checkbody= body; checkbody >=1; checkbody--) { //ë±€ì˜ ëª¸í†µì„ ì´ë™ì‹œí‚´  
 		
 		firstx[checkbody] = firstx[checkbody-1];
 		firsty[checkbody] = firsty[checkbody-1];
 	}
 	
-	firsty[0] -= 1; //¹ìÀÇ ¸Ó¸® ÀÌµ¿ ¼³Á¤  
+	firsty[0] -= 1; //ë±€ì˜ ë¨¸ë¦¬ ì´ë™ ì„¤ì •  
 	
-	gotoxy(firstx[0], firsty[0]); //¹ìÀÇ ¸Ó¸® print  
-	printf("¡Ü");
+	gotoxy(firstx[0], firsty[0]); //ë±€ì˜ ë¨¸ë¦¬ print  
+	printf("â—");
 	
-	for (checkbody = body; checkbody >=1; checkbody--) { //¹ìÀÇ ¸öÅë print  
+	for (checkbody = body; checkbody >=1; checkbody--) { //ë±€ì˜ ëª¸í†µ print  
 		
 		gotoxy(firstx[checkbody], firsty[checkbody]);
-		printf("¤·");
+		printf("ã…‡");
 	}	
 		
 }
 
-void left() { //¹ìÀÌ ¿ŞÂÊÀ¸·Î ÀÌµ¿ÇÏ´Â ÇÔ¼ö  
+void left() { //ë±€ì´ ì™¼ìª½ìœ¼ë¡œ ì´ë™í•˜ëŠ” í•¨ìˆ˜  
 
 	textcolor(11);
 		
@@ -500,17 +500,17 @@ void left() { //¹ìÀÌ ¿ŞÂÊÀ¸·Î ÀÌµ¿ÇÏ´Â ÇÔ¼ö
 	firstx[0] -= 2;
 	
 	gotoxy(firstx[0], firsty[0]);
-	printf("¡Ü");
+	printf("â—");
 	
 	for (checkbody = body; checkbody >=1; checkbody--) {
 		
 		gotoxy(firstx[checkbody], firsty[checkbody]);
-		printf("¤·");
+		printf("ã…‡");
 	}
 	
 }
 
-void right() { //¹ìÀÌ ¿À¸¥ÂÊÀ¸·Î ÀÌµ¿ÇÏ´Â ÇÔ¼ö  
+void right() { //ë±€ì´ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ì´ë™í•˜ëŠ” í•¨ìˆ˜  
 		
 	textcolor(11);
 	
@@ -533,17 +533,17 @@ void right() { //¹ìÀÌ ¿À¸¥ÂÊÀ¸·Î ÀÌµ¿ÇÏ´Â ÇÔ¼ö
 	firstx[0] += 2;
 	
 	gotoxy(firstx[0], firsty[0]);
-	printf("¡Ü");
+	printf("â—");
 	
 	for (checkbody = body; checkbody >=1; checkbody--) {
 		
 		gotoxy(firstx[checkbody], firsty[checkbody]);
-		printf("¤·");
+		printf("ã…‡");
 	}
 	
 }
 
-void down() { //¹ìÀÌ ¾Æ·¡ÂÊÀ¸·Î ÀÌµ¿ÇÏ´Â ÇÔ¼ö  
+void down() { //ë±€ì´ ì•„ë˜ìª½ìœ¼ë¡œ ì´ë™í•˜ëŠ” í•¨ìˆ˜  
 	
 	textcolor(11);
 	
@@ -566,20 +566,20 @@ void down() { //¹ìÀÌ ¾Æ·¡ÂÊÀ¸·Î ÀÌµ¿ÇÏ´Â ÇÔ¼ö
 	firsty[0] += 1;
 	
 	gotoxy(firstx[0], firsty[0]);
-	printf("¡Ü");
+	printf("â—");
 	
 	for (checkbody = body; checkbody >=1; checkbody--) {
 		
 		gotoxy(firstx[checkbody], firsty[checkbody]);
-		printf("¤·");
+		printf("ã…‡");
 	}
 }
 
-void collision() { //¹ìÀÇ Ãæµ¹ ¿©ºÎ È®ÀÎ ÇÔ¼ö  
+void collision() { //ë±€ì˜ ì¶©ëŒ ì—¬ë¶€ í™•ì¸ í•¨ìˆ˜  
 	
 	int check= body;
 	
-	if ( firstx[0] <= 5 || firstx[0] >= 63 || firsty[0] <= 5 || firsty[0] >= 33 ) { //°ÔÀÓº¸µå º®°ú Ãæµ¹ÇÏ´ÂÁö È®ÀÎ 
+	if ( firstx[0] <= 5 || firstx[0] >= 63 || firsty[0] <= 5 || firsty[0] >= 33 ) { //ê²Œì„ë³´ë“œ ë²½ê³¼ ì¶©ëŒí•˜ëŠ”ì§€ í™•ì¸ 
 		
 		if (life ==1 ) {
 			life--;
@@ -590,20 +590,20 @@ void collision() { //¹ìÀÇ Ãæµ¹ ¿©ºÎ È®ÀÎ ÇÔ¼ö
 		else {			
 			gotoxy(23, 17); 
 		    textcolor(6);
-		    printf("°ÔÀÓÀÌ Á¾·áµÇ¾ú½À´Ï´Ù.");
+		    printf("ê²Œì„ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 		
-		    if ( score > r[i].score ) { //»ç¿ëÀÚ ÃÖ°í ±â·Ï È®ÀÎ  
+		    if ( score > r[i].score ) { //ì‚¬ìš©ì ìµœê³  ê¸°ë¡ í™•ì¸  
 			
 			    r[i].score = score;
 		        gotoxy(23, 19);
-		        printf("°³ÀÎ ÃÖ°í ±â·Ï: %d", r[i].score);
+		        printf("ê°œì¸ ìµœê³  ê¸°ë¡: %d", r[i].score);
 		    
-		        if ( score > bestscore ) { //°ÔÀÓ ÃÖ°í ±â·Ï È®ÀÎ  
+		        if ( score > bestscore ) { //ê²Œì„ ìµœê³  ê¸°ë¡ í™•ì¸  
 		    	
 		    	    bestscore = score;
 		    	    gotoxy(23, 21);
 		    	    textcolor(14);
-		    	    printf("°ÔÀÓ ÃÖ°í ±â·Ï: %d", bestscore);
+		    	    printf("ê²Œì„ ìµœê³  ê¸°ë¡: %d", bestscore);
 		    	    textcolor(7);
 		    	    gotoxy(23, 23);
 		    	    print_ascii_art();
@@ -618,7 +618,7 @@ void collision() { //¹ìÀÇ Ãæµ¹ ¿©ºÎ È®ÀÎ ÇÔ¼ö
 		
 	}
 	
-	while ( !(firstx[0]==firstx[check] && firsty[0]==firsty[check]) ) { //¹ìÀÇ ¸Ó¸®°¡ ¸öÅë°ú Ãæµ¹ÇÏ´ÂÁö È®ÀÎ  
+	while ( !(firstx[0]==firstx[check] && firsty[0]==firsty[check]) ) { //ë±€ì˜ ë¨¸ë¦¬ê°€ ëª¸í†µê³¼ ì¶©ëŒí•˜ëŠ”ì§€ í™•ì¸  
 		
 		if (check == 1) {
 			break;
@@ -626,7 +626,7 @@ void collision() { //¹ìÀÇ Ãæµ¹ ¿©ºÎ È®ÀÎ ÇÔ¼ö
 		else check--;
 	}
 	
-	if ( (firstx[0]==firstx[check] && firsty[0]==firsty[check]) ) { //¹ìÀÇ ¸Ó¸®°¡ ¸öÅë°ú Ãæµ¹ÇÏ¸é °ÔÀÓ Á¾·á  
+	if ( (firstx[0]==firstx[check] && firsty[0]==firsty[check]) ) { //ë±€ì˜ ë¨¸ë¦¬ê°€ ëª¸í†µê³¼ ì¶©ëŒí•˜ë©´ ê²Œì„ ì¢…ë£Œ  
 		
 		if (life == 1) {
 			
@@ -639,20 +639,20 @@ void collision() { //¹ìÀÇ Ãæµ¹ ¿©ºÎ È®ÀÎ ÇÔ¼ö
 			
 			gotoxy(23, 17); 
 		    textcolor(6);
-		    printf("°ÔÀÓÀÌ Á¾·áµÇ¾ú½À´Ï´Ù.");
+		    printf("ê²Œì„ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 		    
 		    if ( score > r[i].score ) {
 			
 			    r[i].score = score;
 		        gotoxy(23, 19);
-		        printf("°³ÀÎ ÃÖ°í ±â·Ï: %d", r[i].score);
+		        printf("ê°œì¸ ìµœê³  ê¸°ë¡: %d", r[i].score);
 		    
 		        if ( r[i].score > bestscore ) {
 		    	
 		    	    bestscore = r[i].score;
 		    	    gotoxy(23, 21);
 		    	    textcolor(14);
-		    	    printf("°ÔÀÓ ÃÖ°í ±â·Ï: %d", bestscore);
+		    	    printf("ê²Œì„ ìµœê³  ê¸°ë¡: %d", bestscore);
 		    	    textcolor(7);
 		    	    gotoxy(23, 23);
 		    	    print_ascii_art();
@@ -666,19 +666,19 @@ void collision() { //¹ìÀÇ Ãæµ¹ ¿©ºÎ È®ÀÎ ÇÔ¼ö
 	}	
 }
 
-void Score() { //Á¡¼ö Áõ°¡ ÇÔ¼ö  
+void Score() { //ì ìˆ˜ ì¦ê°€ í•¨ìˆ˜  
 	
-	if ( firstx[0]==a && firsty[0]==b ) { //¹ìÀÇ ¸Ó¸®°¡ À½½Ä°ú ¸¸³µÀ» ¶§  
-		score += 1; //Á¡¼ö Áõ°¡  
+	if ( firstx[0]==a && firsty[0]==b ) { //ë±€ì˜ ë¨¸ë¦¬ê°€ ìŒì‹ê³¼ ë§Œë‚¬ì„ ë•Œ  
+		score += 1; //ì ìˆ˜ ì¦ê°€  
 		
 		if (speed > 5) 
-			speed -= 5; //¼Óµµ Áõ°¡  
+			speed -= 5; //ì†ë„ ì¦ê°€  
 		 
 		textcolor(10);
     	gotoxy(5, 3);
-	    printf("Á¡¼ö: %d", score);  //Á¡¼ö print  
-	    body++; //¹ìÀÇ ¸öÅë Ãß°¡  
-	    food(); //À½½Ä »õ·Î »ı¼º  
+	    printf("ì ìˆ˜: %d", score);  //ì ìˆ˜ print  
+	    body++; //ë±€ì˜ ëª¸í†µ ì¶”ê°€  
+	    food(); //ìŒì‹ ìƒˆë¡œ ìƒì„±  
 	    Bestscore();
 	}
 	textcolor(7);
@@ -690,43 +690,45 @@ void Bestscore() {
 		
 		textcolor(14);
 		gotoxy(70, 15);
-		printf("¡á¡á¡á¡á      ¡á¡á¡á¡á¡á    ¡á¡á¡á¡á¡á    ¡á¡á¡á¡á¡á");
+		printf("â– â– â– â–       â– â– â– â– â–     â– â– â– â– â–     â– â– â– â– â– ");
 		gotoxy(70, 16);
-		printf("¡á    ¡á      ¡á            ¡á                ¡á    ");
+		printf("â–     â–       â–             â–                 â–     ");
 		gotoxy(70, 17);
-		printf("¡á    ¡á      ¡á            ¡á                ¡á    ");
+		printf("â–     â–       â–             â–                 â–     ");
 		gotoxy(70, 18);
-		printf("¡á¡á¡á¡á¡á    ¡á¡á¡á¡á¡á    ¡á¡á¡á¡á¡á        ¡á    ");
+		printf("â– â– â– â– â–     â– â– â– â– â–     â– â– â– â– â–         â–     ");
 		gotoxy(70, 19);
-		printf("¡á      ¡á    ¡á                    ¡á        ¡á    ");
+		printf("â–       â–     â–                     â–         â–     ");
 		gotoxy(70, 20);
-		printf("¡á      ¡á    ¡á                    ¡á        ¡á    ");
+		printf("â–       â–     â–                     â–         â–     ");
 		gotoxy(70, 21);
-		printf("¡á¡á¡á¡á¡á    ¡á¡á¡á¡á¡á    ¡á¡á¡á¡á¡á        ¡á    ");
+		printf("â– â– â– â– â–     â– â– â– â– â–     â– â– â– â– â–         â–     ");
 		
 		gotoxy(70, 23);
-		printf("¡á¡á¡á¡á¡á    ¡á¡á¡á¡á¡á    ¡á¡á¡á¡á¡á    ¡á¡á¡á¡á      ¡á¡á¡á¡á¡á");
+		printf("â– â– â– â– â–     â– â– â– â– â–     â– â– â– â– â–     â– â– â– â–       â– â– â– â– â– ");
 		gotoxy(70, 24);
-		printf("¡á            ¡á            ¡á      ¡á    ¡á    ¡á      ¡á");
+		printf("â–             â–             â–       â–     â–     â–       â– ");
 		gotoxy(70, 25);
-		printf("¡á            ¡á            ¡á      ¡á    ¡á    ¡á      ¡á");
+		printf("â–             â–             â–       â–     â–     â–       â– ");
 		gotoxy(70, 26);
-		printf("¡á¡á¡á¡á¡á    ¡á            ¡á      ¡á    ¡á¡á¡á¡á      ¡á¡á¡á¡á¡á");
+		printf("â– â– â– â– â–     â–             â–       â–     â– â– â– â–       â– â– â– â– â– ");
 		gotoxy(70, 27);
-		printf("        ¡á    ¡á            ¡á      ¡á    ¡á    ¡á      ¡á");
+		printf("        â–     â–             â–       â–     â–     â–       â– ");
 		gotoxy(70, 28);
-		printf("        ¡á    ¡á            ¡á      ¡á    ¡á      ¡á    ¡á");
+		printf("        â–     â–             â–       â–     â–       â–     â– ");
 		gotoxy(70, 29);
-		printf("¡á¡á¡á¡á¡á    ¡á¡á¡á¡á¡á    ¡á¡á¡á¡á¡á    ¡á        ¡á  ¡á¡á¡á¡á¡á");
+		printf("â– â– â– â– â–     â– â– â– â– â–     â– â– â– â– â–     â–         â–   â– â– â– â– â– ");
 		textcolor(7);
 	}	
 }
 
 
-void record() //·©Å· ÇÔ¼ö  
+void record() //ë­í‚¹ í•¨ìˆ˜  
 {	
 	int i,j,tmp;
 	char temp_name[20] = {0,};
+	struct ranker tmp_user[MAX_USER] = {0,};
+	
 	textcolor(10);
 	printf("\n\n\t============ [HISTORY] ============\n\n");
 	textcolor(7);
@@ -734,6 +736,8 @@ void record() //·©Å· ÇÔ¼ö
 	for(i = 0; i < count; i++)
 	{
 		printf("\t| [%d] Score : %2d\t| Name : %s\n", (i+1), r[i].score, r[i].name);
+		tmp_user[i].score = r[i].score;
+		strncpy(tmp_user[i].name, r[i].name, 20);
 	}
 	
 	
@@ -741,28 +745,28 @@ void record() //·©Å· ÇÔ¼ö
 	{
 		for(j = i+1; j < count; j++)
 		{
-			if(r[i].score < r[j].score)
+			if(tmp_user[i].score < tmp_user[j].score)
 			{
-				tmp = r[j].score;
-				r[j].score = r[i].score;
-				r[i].score = tmp;
+				tmp = tmp_user[j].score;
+				tmp_user[j].score = tmp_user[i].score;
+				tmp_user[i].score = tmp;
 				
-				strncpy(temp_name, r[j].name, 20);
-				strncpy(r[j].name, r[i].name, 20);
-				strncpy(r[i].name, temp_name, 20);	
+				strncpy(temp_name, tmp_user[j].name, 20);
+				strncpy(tmp_user[j].name, tmp_user[i].name, 20);
+				strncpy(tmp_user[i].name, temp_name, 20);	
 			}	
 		}	
 	}
 	textcolor(14);
 	printf("\n\n\n\n\t=============  [RANK]  =============\n\n");
-	printf("\t| [1st] Score : %d\t| Name : %s\n\n", r[0].score, r[0].name);
+	printf("\t| [1st] Score : %d\t| Name : %s\n\n", tmp_user[0].score, tmp_user[0].name);
 	textcolor(11);
-	printf("\t| [2nd] Score : %d\t| Name : %s\n", r[1].score, r[1].name);
-	printf("\t| [3rd] Score : %d\t| Name : %s\n", r[2].score, r[2].name);
+	printf("\t| [2nd] Score : %d\t| Name : %s\n", tmp_user[1].score, tmp_user[1].name);
+	printf("\t| [3rd] Score : %d\t| Name : %s\n", tmp_user[2].score, tmp_user[2].name);
 	
 	int num;
 	textcolor(7);
-	printf("\n\n\n¸Ş´º·Î µ¹¾Æ°¡½Ã·Á¸é 1, ¹Ù·Î °ÔÀÓÀ» ½ÃÀÛÇÏ½Ã·Á¸é 2¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.\n");
+	printf("\n\n\në©”ë‰´ë¡œ ëŒì•„ê°€ì‹œë ¤ë©´ 1, ë°”ë¡œ ê²Œì„ì„ ì‹œì‘í•˜ì‹œë ¤ë©´ 2ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.\n");
 	scanf("%d", &num);
 	
 	switch(num)
@@ -778,7 +782,7 @@ void record() //·©Å· ÇÔ¼ö
 			break;
 		
 		default:
-			printf("\n\nÀß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù. ¸Ş´º·Î µ¹¾Æ°©´Ï´Ù.\n");
+			printf("\n\nì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤. ë©”ë‰´ë¡œ ëŒì•„ê°‘ë‹ˆë‹¤.\n");
 			Sleep(1000);
 			system("cls");
 			menu();
@@ -786,11 +790,11 @@ void record() //·©Å· ÇÔ¼ö
 	}
 }
 
-void exitgame() { //°ÔÀÓ ³ª°¡±â ÇÔ¼ö  
+void exitgame() { //ê²Œì„ ë‚˜ê°€ê¸° í•¨ìˆ˜  
 	
 	int num;
-	printf("\nÁ¤¸» °ÔÀÓÀ» Á¾·áÇÏ½Ã°Ú½À´Ï±î?\n");
-	printf("\nÁ¾·á¸¦ ¿øÇÏ½Ã¸é 1, ´Ù½Ã ¸Ş´º·Î µ¹¾Æ°¡·Á¸é 2¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.\n");
+	printf("\nì •ë§ ê²Œì„ì„ ì¢…ë£Œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?\n");
+	printf("\nì¢…ë£Œë¥¼ ì›í•˜ì‹œë©´ 1, ë‹¤ì‹œ ë©”ë‰´ë¡œ ëŒì•„ê°€ë ¤ë©´ 2ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.\n");
 	scanf("%d", &num);
 	
 	switch (num) {
@@ -805,7 +809,7 @@ void exitgame() { //°ÔÀÓ ³ª°¡±â ÇÔ¼ö
 			break;
 			
 		default:
-			printf("\n\nÀß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù. ¸Ş´º·Î µ¹¾Æ°©´Ï´Ù.\n");
+			printf("\n\nì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤. ë©”ë‰´ë¡œ ëŒì•„ê°‘ë‹ˆë‹¤.\n");
 			Sleep(1000);
 			system("cls");
 			menu();
@@ -824,4 +828,3 @@ void print_ascii_art()
 	printf("   __________/ /\n");
 	printf("-=:___________/\n");
 }
-
